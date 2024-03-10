@@ -1,8 +1,8 @@
 pipeline{
     agent any
     environment {
-        USER = 'ec2-user'
-        EC2_INSTANCE_IP = '65.0.184.117'
+        USER = 'ubuntu'
+        EC2_INSTANCE_IP = '52.66.209.115'
         KEY_PAIR = 'ec2.pem'
     }
     stages{
