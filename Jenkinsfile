@@ -35,8 +35,7 @@ pipeline{
                     sshagent(credentials:['ec2']) {
                         sh "scp -o StrictHostKeyChecking=no -i ${KEY_PAIR}.pem Dockerfile ${USER}@${EC2_INSTANCE_IP}:~/"
                         sh "scp -o StrictHostKeyChecking=no -i ${KEY_PAIR}.pem -r * ${USER}@${EC2_INSTANCE_IP}:~/"
-                        sshCommand remote: "ec2-user@${EC2_INSTANCE_IP}", command: "docker build -t narsss1234/python-app:latest -f Dockerfile ."
-                        sshCommand remote: "ec2-user@${EC2_INSTANCE_IP}", command: "docker run -d -p 3000:3000 narsss1234/python-app:latest"
+                        sshCommand remote: "ubuntu@${EC2_INSTANCE_IP}", command: "docker run -d -p 3000:3000 narsss1234/python-app:latest"
                     }
                 }
             }
