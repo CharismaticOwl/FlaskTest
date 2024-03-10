@@ -3,7 +3,7 @@ pipeline{
     environment {
         USER = 'ubuntu'
         EC2_INSTANCE_IP = '52.66.209.115'
-        KEY_PAIR = 'ec2.pem'
+        KEY_PAIR = 'ec2'
     }
     stages{
         stage('Fetch code'){
@@ -32,7 +32,7 @@ pipeline{
         stage('Deploy') {
             steps {
                 script {
-                    sshagent(['satya_ec2']) {
+                    sshagent(credentials:['ec2']) {
                         sh "scp -o StrictHostKeyChecking=no -i ${KEY_PAIR}.pem Dockerfile ${USER}@${EC2_INSTANCE_IP}:~/"
                         sh "scp -o StrictHostKeyChecking=no -i ${KEY_PAIR}.pem -r * ${USER}@${EC2_INSTANCE_IP}:~/"
                         sshCommand remote: "ec2-user@${EC2_INSTANCE_IP}", command: "docker build -t narsss1234/python-app:latest -f Dockerfile ."
