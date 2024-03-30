@@ -16,7 +16,7 @@ jobs:
               run: ls -al
             
             - name: install pip
-              run: apt install pip -y
+              run: sudo apt install pip -y
 
             - name: lets install all the dependencies
               run: pip install -r requirements.txt
