@@ -10,3 +10,6 @@ jobs:
         
         - name: checkout
           uses: actions/checkout@v4
+        
+        - name: list all the files
+          run: ls -al
